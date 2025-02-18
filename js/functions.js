@@ -5,9 +5,10 @@
 */
 
 function getStringLength(string,maxLength){
-  let stringLength=string.length;
-  return (stringLength<=maxLength)?true:false;
+  const stringLength = string.length;
+  return (stringLength <= maxLength) ? true : false;
 }
+getStringLength('kekstogrammmm', 10);
 
 /*   //проверка
 console.log(getStringLength('kekstogrammmm', 10));// false
@@ -20,7 +21,7 @@ console.log(getStringLength('keks', 10));// true
 Предусмотрите случай, когда в строке встречаются пробелы. Они не должны учитываться при проверке!*/
 
 function isPalindrome(string) {
-  let newString = string.replaceAll(' ', '').toLowerCase();
+  const newString = string.replaceAll(' ', '').toLowerCase();
   let reverseString = '';
   for (let i = newString.length - 1; i >= 0; i--) {
     reverseString += newString[i];
@@ -29,6 +30,8 @@ function isPalindrome(string) {
   // console.log(reverseString);
   return newString === reverseString;
 }
+
+isPalindrome('топот');
 
 /*   //проверка
  console.log(isPalindrome('топот')); // true
@@ -49,14 +52,16 @@ function getNumber(note) {
     return Math.abs(Number(note.toString().replace(/[.,]/g, '')));
   } else {
     let number = '';
-    for (let char of note.toString()) {
-      if (!isNaN(parseInt(char))) {
+    for (const char of note.toString()) {
+      if (!isNaN(parseInt(char, 10))) {
         number += char;
       }
     }
     return number.length > 0 ? Number(number) : NaN;
   }
 }
+
+getNumber('2023 год');
 
 /*   //проверка
 console.log(getNumber('2023 год'));            // 2023
