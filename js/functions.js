@@ -4,15 +4,14 @@
   если строка меньше или равна указанной длине, и false, если строка длиннее.
 */
 
-function getStringLength(string,maxLength){
-  const stringLength = string.length;
-  return (stringLength <= maxLength) ? true : false;
-}
-getStringLength('kekstogrammmm', 10);
 
-/*   //проверка
-console.log(getStringLength('kekstogrammmm', 10));// false
-console.log(getStringLength('keks', 10));// true
+const checkStringLength = (string, maxStringLenght) => string.length <= maxStringLenght;
+
+checkStringLength('kekstogrammmm', 10);
+
+/*//проверка
+console.log(checkStringLength('kekstogrammmm', 10));// false
+console.log(checkStringLength('keks', 10));// true
 */
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -20,25 +19,23 @@ console.log(getStringLength('keks', 10));// true
 /*  2.   Функция для проверки, является ли строка палиндромом.
 Предусмотрите случай, когда в строке встречаются пробелы. Они не должны учитываться при проверке!*/
 
-function isPalindrome(string) {
+const isPalindrome = (string)=> {
   const newString = string.replaceAll(' ', '').toLowerCase();
   let reverseString = '';
   for (let i = newString.length - 1; i >= 0; i--) {
     reverseString += newString[i];
   }
-  // console.log(newString);
-  // console.log(reverseString);
   return newString === reverseString;
-}
+};
+
 
 isPalindrome('топот');
-
-/*   //проверка
+/*//проверка
  console.log(isPalindrome('топот')); // true
  console.log(isPalindrome('ДовОд')); // true
- console.log(isPalindrome('Кекс'));  // false
+ console.log(isPalindrome('Кекс')); // false
  console.log(isPalindrome('Лёша на полке клопа нашёл ')); // true
- */
+*/
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -47,32 +44,24 @@ isPalindrome('топот');
  когда вместо строки приходит число возвращать функция по-прежнему должна только целые положительные числа:*/
 
 
-function getNumber(note) {
-  if (!isNaN(note) && note !== null) {
-    return Math.abs(Number(note.toString().replace(/[.,]/g, '')));
-  } else {
-    let number = '';
-    for (const char of note.toString()) {
-      if (!isNaN(parseInt(char, 10))) {
-        number += char;
-      }
-    }
-    return number.length > 0 ? Number(number) : NaN;
-  }
-}
+const extractNumber = (note) => {
+  const numericString = note.toString().replace(/\D/g, '');
+  return numericString.length > 0 ? parseInt(numericString, 10) : NaN;
+};
 
-getNumber('2023 год');
+extractNumber('2023 год');
 
-/*   //проверка
-console.log(getNumber('2023 год'));            // 2023
-console.log(getNumber('ECMAScript 2022'));     // 2022
-console.log(getNumber('1 кефир, 0.5 батона')); // 105
-console.log(getNumber('агент 007'));           // 7
-console.log(getNumber('а я томат'));           // NaN
-console.log(getNumber('2023 год 18 февраля'));//202318
-console.log(getNumber(2023));//2023
-console.log(getNumber(1.555));//1555
-console.log(getNumber(-1));//1
-console.log(getNumber(-1.56));//156
-console.log(getNumber(-1000.25));//100025
+/*  //проверка
+console.log(extractNumber('2023 год'));            // 2023
+console.log(extractNumber('ECMAScript 2022'));     // 2022
+console.log(extractNumber('1 кефир, 0.5 батона')); // 105
+console.log(extractNumber('агент 007'));           // 7
+console.log(extractNumber('а я томат'));           // NaN
+console.log(extractNumber('2023 год 18 февраля'));//202318
+console.log(extractNumber(2023));//2023
+console.log(extractNumber(1.555));//1555
+console.log(extractNumber(-1));//1
+console.log(extractNumber(-1.56));//156
+console.log(extractNumber(-1000.25));//100025
 */
+
