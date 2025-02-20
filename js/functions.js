@@ -46,7 +46,7 @@ isPalindrome('топот');
 
 const extractNumber = (note) => {
   const numericString = note.toString().replace(/\D/g, '');
-  return numericString.length > 0 ? parseInt(numericString, 10) : NaN;
+  return parseInt(numericString, 10);
 };
 
 extractNumber('2023 год');
