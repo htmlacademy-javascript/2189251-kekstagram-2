@@ -67,6 +67,14 @@ const MESSAGE = [
 ];
 
 const COUNT_OF_PHOTO = 25;
+const MIN_COUNT_OF_MESSAGE_TEXT = 1;
+const MAX_COUNT_OF_MESSAGE_TEXT = 2;
+const MIN_COUNT_OF_AVATAR = 1;
+const MAX_COUNT_OF_AVATAR = 6;
+const MIN_COUNT_OF_LIKES = 15;
+const MAX_COUNT_OF_LIKES = 200;
+const MIN_COUNT_OF_COMMENT = 0;
+const MAX_COUNT_OF_COMMENT = 30;
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -77,20 +85,24 @@ const getRandomInteger = (a, b) => {
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-// Генератор ID для комментариев (глобальный)
-let commentIdCounter = 0;
-const generateCommentId = () => ++commentIdCounter;
+// Генератор ID для комментариев
+const createCommentIdGenerator = () => {
+  let commentIdCounter = 0;
+  return () => ++commentIdCounter;
+};
+const generateCommentId = createCommentIdGenerator();
+
 
 // Функция для генерации сообщения
 const getMessageText = () => {
-  const count = getRandomInteger(1, 2);
+  const count = getRandomInteger (MIN_COUNT_OF_MESSAGE_TEXT, MAX_COUNT_OF_MESSAGE_TEXT);
   return Array.from({length: count}, () => getRandomArrayElement(MESSAGE)).join(' ');
 };
 
 // Функция создания комментария
 const createComment = () => ({
   id: generateCommentId(),
-  avatar: `img/avatar-${getRandomInteger(1,6)}.svg`,
+  avatar: `img/avatar-${getRandomInteger (MIN_COUNT_OF_AVATAR, MAX_COUNT_OF_AVATAR)}.svg`,
   message: getMessageText(),
   name: getRandomArrayElement(NAMES)
 });
@@ -103,10 +115,10 @@ const createPhoto = (index) => ({
   description: getRandomArrayElement(DESCRIPTIONS),
 
   // Добавляем генерацию лайков (15-200)
-  likes: getRandomInteger(15,200),
+  likes: getRandomInteger(MIN_COUNT_OF_LIKES, MAX_COUNT_OF_LIKES),
 
   // Генерируем от О до ЗО комментариев
-  comments: Array.from({length: getRandomInteger(0,30)},() => createComment())
+  comments: Array.from({length: getRandomInteger(MIN_COUNT_OF_COMMENT, MAX_COUNT_OF_COMMENT)},() => createComment())
 
 });
 
