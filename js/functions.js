@@ -74,11 +74,13 @@ console.log(extractNumber(-1000.25));//100025
 
 Продолжительность задаётся числом. Гарантируется, что и рабочий день, и встреча укладываются в одни календарные сутки.*/
 
+const MINUTS_IN_HOUR = 60;
+
 function isBusinessMeetingWillBe(startOfDay, endOfDay, meetingStart, meetingDuration) {
   // Преобразуем время в минуты с начала дня
   const toMinutes = (time) => {
     const [hours, minutes] = time.split(':').map(Number);
-    return hours * 60 + minutes;
+    return hours * MINUTS_IN_HOUR + minutes;
   };
 
   const startDay = toMinutes(startOfDay);
@@ -87,8 +89,7 @@ function isBusinessMeetingWillBe(startOfDay, endOfDay, meetingStart, meetingDura
   const meetingEndTime = meetingStartTime + meetingDuration;
 
   // Проверяем условия
-  const isMeetingWithinWorkingHours = meetingStartTime >= startDay && meetingEndTime <= endDay;
-  return isMeetingWithinWorkingHours;
+  return meetingStartTime >= startDay && meetingEndTime <= endDay;
 }
 
 isBusinessMeetingWillBe('08:00', '17:30', '14:00', 90);
