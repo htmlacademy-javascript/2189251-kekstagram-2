@@ -1,6 +1,8 @@
-import { albumOfPhoto } from './data.js';
+import { createAlbumOfPhoto } from './data.js';
+import { outputPictures } from './thumbnails.js';
 
+outputPictures(createAlbumOfPhoto());
 
-albumOfPhoto();
-//console.log(albumOfPhoto());
+// createAlbumOfPhoto();
+//console.log(createAlbumOfPhoto());
 
