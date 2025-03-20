@@ -79,8 +79,8 @@ const createPhoto = (index) => ({
 
 
 // Создаём альбом
-const albumOfPhoto = () => Array.from({length: COUNT_OF_PHOTO},(_, index) => createPhoto(index));
+const createAlbumOfPhoto = () => Array.from({length: COUNT_OF_PHOTO},(_, index) => createPhoto(index));
 
-export { albumOfPhoto };
-//console.log(albumOfPhoto);
+export { createAlbumOfPhoto };
+//console.log(createAlbumOfPhoto);
 
